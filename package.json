@@ -5,21 +5,34 @@
     "scripts": {
         "dev": "NODE_ENV=development bun run --watch src/index.ts",
         "build": "NODE_ENV=production bun build src/index.ts --target node --outdir dist",
-        "start": "NODE_ENV=production bun run dist/index.js"
+        "start": "NODE_ENV=production bun run dist/index.js",
+        "db:generate": "prisma generate",
+        "db:migrate": "prisma migrate dev",
+        "docker:up": "docker-compose up -d",
+        "docker:down": "docker-compose down",
+        "db:reset": "prisma migrate reset",
+        "db:seed": "bun run prisma/seed.ts",
+        "db:studio": "npx prisma studio --browser none --port 5555"
     },
     "dependencies": {
+        "@prisma/adapter-pg": "^7.0.1",
+        "@prisma/client": "^7.0.1",
         "chalk": "^5.6.2",
         "cors": "^2.8.5",
         "date-fns": "^4.1.0",
         "dotenv": "^17.2.1",
         "express": "^5.1.0",
+        "express-rate-limit": "^8.2.1",
+        "helmet": "^8.1.0",
+        "slugify": "^1.6.6",
         "winston": "^3.18.3",
         "winston-daily-rotate-file": "^5.0.0"
     },
     "devDependencies": {
         "@types/bun": "latest",
         "@types/cors": "^2.8.19",
-        "@types/express": "^5.0.3"
+        "@types/express": "^5.0.3",
+        "prisma": "^7.0.1"
     },
     "peerDependencies": {
         "typescript": "^5"

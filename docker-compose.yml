@@ -1,0 +1,25 @@
+services:
+    postgres:
+        image: postgres:17
+        container_name: oop_node
+        restart: unless-stopped
+        environment:
+            POSTGRES_USER: aiarnob23
+            POSTGRES_PASSWORD: aiarnob23
+            POSTGRES_DB: oop_node
+        ports:
+            - '6070:5432' 
+        volumes:
+            - oop_node_postgres:/var/lib/postgresql/data
+        networks:
+            - oop_node-network
+
+networks:
+    oop_node-network:
+        driver: bridge
+        name: oop_node-network
+
+volumes:
+    oop_node_postgres:
+        driver: local
+        name: oop_node_postgres
